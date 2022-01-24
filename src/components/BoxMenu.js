@@ -2,10 +2,16 @@ import React from 'react';
 import { useContext, useEffect, useState } from "react"
 import BoxTypes from '../data/boxTypes';
 
+import { useSelector, useDispatch } from 'react-redux'
+import { setValue } from '../features/painterSlice'
+
+
 function BoxMenu() {
 
   const [boxOptions, setBoxOptions] = useState();
   const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const dispatch = useDispatch()
   
   useEffect(() => {
     buildBoxOptions();
@@ -13,6 +19,8 @@ function BoxMenu() {
 
   function selectType(index) {
     setSelectedIndex(index);
+
+    dispatch(setValue(index))
   }
 
   function buildBoxOptions() {
@@ -32,7 +40,7 @@ function BoxMenu() {
             tempBoxOptions.push(
               <div className={classes} onClick={() => selectType(index)} key={`box-${index}`}>
                 <svg width="50" height="50">
-                  <rect width="50" height="50" style={{fill: '#444'}} />
+                  <rect width="50" height="50" style={{fill: 'white'}} />
                   <polygon points={component.points} style={{fill: 'black'}} />
                 </svg>
               </div>
