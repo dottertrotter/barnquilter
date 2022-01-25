@@ -6,21 +6,20 @@ import { useSelector, useDispatch } from 'react-redux'
 
 function Box() {
   const selectedBoxType = BoxTypes[useSelector((state) => state.painter.value)];
+  const color1 = useSelector((state) => state.painter.color1);
+  const color2 = useSelector((state) => state.painter.color2);
 
-  // Declare a new state variable, which we'll call "count"
   const [style, setStyle] = useState([]);
 
   function handleClick() {
-    console.log(selectedBoxType[0])
-
     let tempStyle = [];
 
     switch (selectedBoxType[0].type) {
       case 'polygon': 
         tempStyle.push(
           <svg width="50" height="50">
-            <rect width="50" height="50" style={{fill: 'white'}} />
-            <polygon points={selectedBoxType[0].points} style={{fill: 'black'}} />
+            <rect width="50" height="50" style={{fill: color2}} />
+            <polygon points={selectedBoxType[0].points} style={{fill: color1}} />
           </svg>
         )
       break;
@@ -28,13 +27,11 @@ function Box() {
         tempStyle.push(
           <svg width="50" height="50">
             <svg width="50" height="50">
-              <rect width="50" height="50" style={{fill: 'black'}} />
+              <rect width="50" height="50" style={{fill: color1}} />
             </svg>
           </svg>
         )
     }
-
-    
 
     setStyle(tempStyle);
   }

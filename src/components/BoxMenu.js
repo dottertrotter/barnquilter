@@ -1,9 +1,11 @@
 import React from 'react';
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import BoxTypes from '../data/boxTypes';
 
 import { useSelector, useDispatch } from 'react-redux'
 import { setValue } from '../features/painterSlice'
+
+import ColorMenu from './ColorMenu';
 
 
 function BoxMenu() {
@@ -11,11 +13,14 @@ function BoxMenu() {
   const [boxOptions, setBoxOptions] = useState();
   const [selectedIndex, setSelectedIndex] = useState(0);
 
+  const color1 = useSelector((state) => state.painter.color1);
+  const color2 = useSelector((state) => state.painter.color2);
+
   const dispatch = useDispatch()
   
   useEffect(() => {
     buildBoxOptions();
-  }, [selectedIndex]);
+  }, [selectedIndex, color1, color2]);
 
   function selectType(index) {
     setSelectedIndex(index);
@@ -40,8 +45,8 @@ function BoxMenu() {
             tempBoxOptions.push(
               <div className={classes} onClick={() => selectType(index)} key={`box-${index}`}>
                 <svg width="50" height="50">
-                  <rect width="50" height="50" style={{fill: 'white'}} />
-                  <polygon points={component.points} style={{fill: 'black'}} />
+                  <rect width="50" height="50" style={{fill: color2}} />
+                  <polygon points={component.points} style={{fill: color1}} />
                 </svg>
               </div>
             )
@@ -50,7 +55,7 @@ function BoxMenu() {
             tempBoxOptions.push(
               <div className={classes} onClick={() => selectType(index)} key={`box-${index}`}>
                 <svg width="50" height="50">
-                  <rect width="50" height="50" style={{fill: 'black'}} />
+                  <rect width="50" height="50" style={{fill: color1}} />
                 </svg>
               </div>
             )
@@ -62,8 +67,14 @@ function BoxMenu() {
   }
 
   return (
-    <div className="box-menu">
-      {boxOptions}
+    <div>
+      <h2>Patterns</h2>
+      <div className="box-menu">
+        {boxOptions}
+      </div>
+      <div>
+        <ColorMenu />
+      </div>
     </div>
   );
 }

@@ -1,31 +1,36 @@
 const BoxTypes = [
   [
     {
-      'type': 'rect'
+      'type': 'rect',
+      'colors': 1
     }
   ],
   [
     {
       'type': 'polygon',
-      'points': '0,0 50,50 0,50'
+      'points': '0,0 50,50 0,50',
+      'colors': 2
     }
   ],
   [
     {
       'type': 'polygon',
-      'points': '50,0 50,50 0,50'
+      'points': '50,0 50,50 0,50',
+      'colors': 2
     }
   ],
   [
     {
       'type': 'polygon',
-      'points': '0,0 50,50 50,0'
+      'points': '0,0 50,50 50,0',
+      'colors': 2
     }
   ],
   [
     {
       'type': 'polygon',
-      'points': '0,0 50,0 0,50'
+      'points': '0,0 50,0 0,50',
+      'colors': 2
     }
   ]
 ];
