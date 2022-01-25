@@ -25,9 +25,9 @@ function GridMenu() {
   return (
     <div>
       <h2>Grid Size</h2>
-      <label for="rows">Rows</label>
+      <label htmlFor="rows">Rows</label>
       <input type="number" value={rows} className="grid-input" name="rows" onChange={(e) => handleRows(e)} />
-      <label for="cols">Columns</label>
+      <label htmlFor="cols">Columns</label>
       <input type="number" value={cols} className="grid-input" name="cols" onChange={(e) => handleCols(e)} />
     </div>
   );

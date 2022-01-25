@@ -14,8 +14,6 @@ function App() {
   const [table, setTable] = useState([]);
 
   function buildTable() {
-    console.log(numberOfRows)
-
     let cols = [];
     let rows = [];
     for (let r = 0; r < numberOfRows; r++) {
@@ -29,10 +27,6 @@ function App() {
   }
 
   useEffect(() => {
-    console.log(numberOfRows);
-    console.log(savedNumberOfRows);
-
-
     if (numberOfRows !== savedNumberOfRows) {
       numberOfRows = savedNumberOfRows;
     }
