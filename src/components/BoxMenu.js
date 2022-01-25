@@ -2,11 +2,8 @@ import React from 'react';
 import { useEffect, useState } from "react"
 import BoxTypes from '../data/boxTypes';
 
-import { useSelector, useDispatch } from 'react-redux'
-import { setValue } from '../features/painterSlice'
-
-import ColorMenu from './ColorMenu';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { setValue } from '../features/painterSlice';
 
 function BoxMenu() {
 
@@ -71,9 +68,6 @@ function BoxMenu() {
       <h2>Patterns</h2>
       <div className="box-menu">
         {boxOptions}
-      </div>
-      <div>
-        <ColorMenu />
       </div>
     </div>
   );

@@ -1,5 +1,4 @@
-import { useContext, useState, useEffect } from "react";
-import logo from './logo.svg';
+import { useState, useEffect } from "react";
 import './App.css';
 import Box from './components/Box'
 import OptionsMenu from "./components/OptionsMenu";
