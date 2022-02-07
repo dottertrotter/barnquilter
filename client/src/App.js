@@ -17,7 +17,7 @@ function App() {
     let rows = [];
     for (let r = 0; r < numberOfRows; r++) {
       for (let c = 0; c < numberOfCols; c++) {
-        cols.push(<Box key={`${r}-${c}`}></Box>);
+        cols.push(<Box key={`${r}-${c}`} keyValue={`${r}-${c}`}></Box>);
       }
       rows.push(<div className="row" key={`row-${r}`}>{cols}</div>)
       cols = [];

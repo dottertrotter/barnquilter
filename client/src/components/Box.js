@@ -4,7 +4,9 @@ import { useContext, useEffect, useState } from "react"
 
 import { useSelector, useDispatch } from 'react-redux'
 
-function Box() {
+function Box(props) {
+  console.log(`props: ${props.keyValue}`)
+
   const selectedBoxType = BoxTypes[useSelector((state) => state.painter.value)];
   const color1 = useSelector((state) => state.painter.color1);
   const color2 = useSelector((state) => state.painter.color2);
