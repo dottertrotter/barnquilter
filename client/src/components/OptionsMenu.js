@@ -4,13 +4,32 @@ import BoxMenu from './BoxMenu';
 import GridMenu from './GridMenu';
 import ColorMenu from './ColorMenu';
 
+import { useSelector, useDispatch } from 'react-redux'
+
 function OptionsMenu() {
   const [data, setData] = React.useState(null);
 
+  const currentTableState = useSelector((state) => state.grid.boxTable);
+  let tableStateData;
+
+  useEffect(() => {
+    if (tableStateData !== currentTableState) {
+      tableStateData = currentTableState;
+    }
+  }, [currentTableState]);
+
   function saveQuilt() {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
+    console.log(tableStateData);
+
+    fetch("/save", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(tableStateData)
+    })
+    .then((res) => res.json());
+    //.then((data) => setData(data.message));
   }
 
   return (

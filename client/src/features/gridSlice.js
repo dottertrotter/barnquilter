@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   rows: 10,
   cols: 10,
+  boxTable: []
 }
 
 export const gridSlice = createSlice({
@@ -28,10 +29,9 @@ export const gridSlice = createSlice({
       state.boxTable = rows;
       console.log(state.boxTable);
     },
-    // action is {rowIndex, colIndex, type, color1, color2}
+    
+    // action.payload is {rowIndex, colIndex, type, color1, color2, points}
     addBoxToTable: (state, action) => {
-      //console.log(action.payload);
-
       let copiedBoxTable = JSON.parse(JSON.stringify(state.boxTable));
       copiedBoxTable[action.payload.rowIndex][action.payload.colIndex] = {
         type: action.payload.type,
