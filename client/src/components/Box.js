@@ -3,15 +3,16 @@ import BoxTypes from '../data/boxTypes';
 import { useContext, useEffect, useState } from "react"
 
 import { useSelector, useDispatch } from 'react-redux'
+import { addBoxToTable } from '../features/gridSlice'
 
 function Box(props) {
-  console.log(`props: ${props.keyValue}`)
-
   const selectedBoxType = BoxTypes[useSelector((state) => state.painter.value)];
   const color1 = useSelector((state) => state.painter.color1);
   const color2 = useSelector((state) => state.painter.color2);
 
   const [style, setStyle] = useState([]);
+
+  const dispatch = useDispatch();
 
   function handleClick() {
     let tempStyle = [];
@@ -34,6 +35,15 @@ function Box(props) {
           </svg>
         )
     }
+
+    dispatch(addBoxToTable({
+      rowIndex: props.rowIndex, 
+      colIndex: props.colIndex, 
+      type: selectedBoxType[0].type, 
+      color1: color1, 
+      color2: color2,
+      points: selectedBoxType[0].points
+    }));
 
     setStyle(tempStyle);
   }

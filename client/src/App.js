@@ -4,6 +4,8 @@ import Box from './components/Box'
 import OptionsMenu from "./components/OptionsMenu";
 import { useSelector, useDispatch } from 'react-redux'
 
+import { setBoxTableSize } from './features/gridSlice'
+
 function App() {
   const savedNumberOfRows = useSelector((state) => state.grid.rows);
   const savedNumerOfCols = useSelector((state) => state.grid.cols);
@@ -12,12 +14,14 @@ function App() {
   let numberOfCols = savedNumerOfCols;
   const [table, setTable] = useState([]);
 
+  const dispatch = useDispatch();
+
   function buildTable() {
     let cols = [];
     let rows = [];
     for (let r = 0; r < numberOfRows; r++) {
       for (let c = 0; c < numberOfCols; c++) {
-        cols.push(<Box key={`${r}-${c}`} keyValue={`${r}-${c}`}></Box>);
+        cols.push(<Box key={`${r}-${c}`} keyValue={`${r}-${c}`} rowIndex={r} colIndex={c}></Box>);
       }
       rows.push(<div className="row" key={`row-${r}`}>{cols}</div>)
       cols = [];
@@ -34,6 +38,7 @@ function App() {
       numberOfCols = savedNumerOfCols;
     }
     buildTable();
+    dispatch(setBoxTableSize());
   }, [savedNumberOfRows, savedNumerOfCols]);
 
   return (

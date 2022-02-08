@@ -8,14 +8,10 @@ function OptionsMenu() {
   const [data, setData] = React.useState(null);
 
   function saveQuilt() {
-    console.log('save')
-  }
-
-  useEffect(() => {
     fetch("/api")
       .then((res) => res.json())
       .then((data) => setData(data.message));
-  }, []);
+  }
 
   return (
     <div className="options-menu">
@@ -23,7 +19,7 @@ function OptionsMenu() {
       <BoxMenu />
       <ColorMenu />
       <input type="button" value="Save" onClick={saveQuilt} />
-      <p>{!data ? "Loading..." : data}</p>
+      <p>{!data ? "" : data}</p>
     </div>
   );
 }
