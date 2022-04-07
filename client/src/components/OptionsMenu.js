@@ -7,9 +7,10 @@ import ColorMenu from './ColorMenu';
 import { useSelector, useDispatch } from 'react-redux'
 
 function OptionsMenu() {
-  const [data, setData] = React.useState(null);
-
   const currentTableState = useSelector((state) => state.grid.boxTable);
+  const rows = useSelector((state) => state.grid.rows);
+  const cols = useSelector((state) => state.grid.cols);
+  
   let tableStateData;
 
   useEffect(() => {
@@ -19,17 +20,13 @@ function OptionsMenu() {
   }, [currentTableState]);
 
   function saveQuilt() {
-    console.log(tableStateData);
+    //console.log(tableStateData);
 
-    fetch("/save", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(tableStateData)
-    })
-    .then((res) => res.json());
-    //.then((data) => setData(data.message));
+    localStorage.setItem('quilts', [{
+      rows: rows,
+      cols: cols,
+      tableData: tableStateData
+    }]);
   }
 
   return (
@@ -38,7 +35,6 @@ function OptionsMenu() {
       <BoxMenu />
       <ColorMenu />
       <input type="button" value="Save" onClick={saveQuilt} />
-      <p>{!data ? "" : data}</p>
     </div>
   );
 }
