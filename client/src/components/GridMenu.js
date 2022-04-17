@@ -3,22 +3,24 @@ import { useEffect, useState } from "react"
 import BoxTypes from '../data/boxTypes';
 
 import { useSelector, useDispatch } from 'react-redux'
-import { setGridRows, setGridCols } from '../features/gridSlice'
+import { setGridRows, setGridCols, setBoxTableSize } from '../features/gridSlice'
 
 
 function GridMenu() {
   const [rows, setRows] = useState(useSelector((state) => state.grid.rows));
   const [cols, setCols] = useState(useSelector((state) => state.grid.cols));
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   function handleRows(event) {
-    dispatch(setGridRows(event.target.value))
+    dispatch(setGridRows(event.target.value));
+    dispatch(setBoxTableSize(event.target.value));
     setRows(event.target.value);
   }
 
   function handleCols(event) {
-    dispatch(setGridCols(event.target.value))
+    dispatch(setGridCols(event.target.value));
+    dispatch(setBoxTableSize(event.target.value));
     setCols(event.target.value);
   }
 
