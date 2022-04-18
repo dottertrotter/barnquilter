@@ -8,8 +8,8 @@ import { setColor1, setColor2 } from '../features/painterSlice'
 
 function ColorMenu() {
   const selectedBoxType = BoxTypes[useSelector((state) => state.painter.value)];
+  const prevColors = useSelector((state) => state.grid.colorsArray);
 
-  let colorsArray = [];
   let numberOfColors = selectedBoxType[0].colors;
   const [colorInputs, setColorInputs] = useState([]);
 
@@ -21,7 +21,7 @@ function ColorMenu() {
       buildColorOptions();
     }
     
-  }, [selectedBoxType]);
+  }, [selectedBoxType, prevColors]);
 
   function updateColorsArray(event, index) {
     if (index === 0) {
