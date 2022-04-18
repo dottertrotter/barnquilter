@@ -29,13 +29,37 @@ function ColorMenu() {
     } else {
       dispatch(setColor2(event.target.value));
     }
-  } 
+  }
+
+  function buildPreviousColorOptions () {
+    let prevColorsDisplay = [];
+
+    for (let c = 0; c < prevColors.length; c++) {
+
+      prevColorsDisplay.push(
+        <div className="previous-color" style={{background: prevColors[c]}} onClick={(e) => prevColorPick(e, prevColors[c])}></div>
+      )
+    }
+
+    return prevColorsDisplay;
+  }
+
+  function prevColorPick(event, color) {
+    console.log(`hello ${color}`)
+  }
 
   function buildColorOptions() {
     let tempInputs = [];
 
     for (let c = 0; c < numberOfColors; c++) {
-      tempInputs.push(<div key={`color-input-${c}`} ><input type="color" className="color-input" onChange={(e) => updateColorsArray(e, c)} /></div>);
+      tempInputs.push(
+        <div key={`color-input-${c}`} >
+          <input type="color" className="color-input" onChange={(e) => updateColorsArray(e, c)} />
+          <div className="previous-colors">
+            {buildPreviousColorOptions()}
+          </div>
+        </div>
+      );
     }
 
     setColorInputs(tempInputs);
