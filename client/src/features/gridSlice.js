@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   rows: 10,
   cols: 10,
-  boxTable: []
+  boxTable: [],
+  colorsArray: []
 }
 
 export const gridSlice = createSlice({
@@ -27,7 +28,6 @@ export const gridSlice = createSlice({
         cols = [];
       }
       state.boxTable = rows;
-      console.log(state.boxTable);
     },
     
     // action.payload is {rowIndex, colIndex, type, color1, color2, points}
@@ -41,8 +41,17 @@ export const gridSlice = createSlice({
       };
 
       state.boxTable = copiedBoxTable;
-      console.log(state.boxTable)
 
+      let tempColorsArray = state.colorsArray;
+      if (action.payload.color1 && !state.colorsArray.includes(action.payload.color1)) {
+        tempColorsArray.push(action.payload.color1);
+      }
+
+      if (action.payload.color2 && !state.colorsArray.includes(action.payload.color2)) {
+        tempColorsArray.push(action.payload.color2);
+      }
+
+      state.colorsArray = tempColorsArray;  
     }
   },
 })
